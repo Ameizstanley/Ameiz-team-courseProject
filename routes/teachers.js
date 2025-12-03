@@ -4,17 +4,71 @@ const teacherController = require('../controller/teacherController');
 
 
 
-router.get('/', teacherController.getAllTeachers);
+router.get('/', 
+    async (req, res) => {
+        try{
+            await teacherController.getAllTeachers(req, res)
+        } catch (error) {
+            res.status(500).json({
+                message: 'Error retrieving teachers',
+                error: error.message
+            });
+        }
+    });
 
 
-router.get('/:id', teacherController.getTeacherById);
+router.get('/:id',
+    async (req, res) => {
+        try{
+            await teacherController.getTeacherById(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error retrieving teacher by ID',
+                error: error.message
+            })
+        }
+    }
+);
 
 
-router.post('/', teacherController.createTeacher);
+router.post('/',
+    async (req, res) => {
+        try{
+            await teacherController.createTeacher(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error creating teacher',
+                error: error.message
+            })
+        }
+    }
+);
 
 
-router.put('/:id', teacherController.updateTeacher);
+router.put('/:id', 
+    async (req, res) => {
+        try{
+            await teacherController.updateTeacher(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error updating teacher',
+                error: error.message
+            })
+        }
+    }
+);
 
-router.delete('/:id', teacherController.deleteTeacher);
+router.delete('/:id', 
+    async (req, res) => {
+        try{
+            await teacherController.deleteTeacher(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error deleting teacher',
+                error: error.message
+            })
+        }
+    }
+);
 
 module.exports = router;

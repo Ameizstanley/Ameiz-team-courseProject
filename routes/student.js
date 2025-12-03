@@ -10,17 +10,73 @@ const studentController = require('../controller/studentController');
 
 
 
-router.get('/', studentController.getAllStudents);
+router.get('/',
+    async (req, res) =>{
+        try {
+            await studentController.getAllStudents(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error retrieving students',
+                error: error.message
+            })
+        }
+    }
+     );
 
-router.get('/:id', studentController.getStudentById);
+router.get('/:id',
+    async (req, res) => {
+        try{
+            await studentController.getStudentById(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error retrieving student by ID',
+                error: error.message
+            })
+        }
+    } );
 
 
-router.post('/', studentController.createStudent);
+router.post('/', 
+    async (req, res) => {
+        try{
+            await studentController.createStudent(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error creating student',
+                error: error.message
+            })
+        }
+    }
+);
 
 
-router.put('/:id', studentController.updateStudent);
+router.put('/:id',
+    async (req, res) => {
+        try{
+            await studentController.updateStudent(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error updating student',
+                error: error.message
+            })
+        }
+    }
+);
 
 
-router.delete('/:id', studentController.deleteStudent);
+router.delete('/:id',
+    async (req, res) => {
+        try{
+            await studentController.deleteStudent(req, res)
+        }catch (error) {
+            res.status(500).json({
+                message: 'Error deleting student',
+                error: error.message
+            })
+        }
+    }
+);
+
+
 
 module.exports = router;
