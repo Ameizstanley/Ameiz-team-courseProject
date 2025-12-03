@@ -11,7 +11,7 @@ const { ObjectId } = require('mongodb');
  */
 const getAllTeachers = async (req, res) => {
     try {
-        const db = mongodb.getDatabase().db('ameizSchool');
+        const db = mongodb.getDatabase().db('ameiz-team-project');
         const teachers = await db.collection('teachers').find().toArray();
         
         res.status(200).json(teachers);
@@ -38,7 +38,7 @@ const getTeacherById = async (req, res) => {
             });
         }
 
-        const db = mongodb.getDatabase().db('ameizSchool');
+        const db = mongodb.getDatabase().db('ameiz-team-project');
         const teacher = await db.collection('teachers').findOne({ 
             _id: new ObjectId(id) 
         });
@@ -73,7 +73,7 @@ const createTeacher = async (req, res) => {
             });
         }
 
-        const db = mongodb.getDatabase().db('ameizSchool');
+        const db = mongodb.getDatabase().db('ameiz-team-project');
         
         // Check if email already exists
         const existingTeacher = await db.collection('teachers').findOne({ email });
@@ -136,7 +136,7 @@ const updateTeacher = async (req, res) => {
             });
         }
 
-        const db = mongodb.getDatabase().db('ameizSchool');
+        const db = mongodb.getDatabase().db('ameiz-team-project');
 
         // Check if teacher exists
         const existingTeacher = await db.collection('teachers').findOne({ 
@@ -213,7 +213,7 @@ const deleteTeacher = async (req, res) => {
             });
         }
 
-        const db = mongodb.getDatabase().db('ameizSchool');
+        const db = mongodb.getDatabase().db('ameiz-team-project');
 
         // Check if teacher exists
         const existingTeacher = await db.collection('teachers').findOne({ 

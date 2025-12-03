@@ -7,9 +7,11 @@ router.get('/', (req, res) => {
 
 router.use('/students', require('./student'));
 
-router.use('/studymaterials', require('./studymaterials'));
+
 
 router.use('/teachers', require('./teachers'));
+
+router.use('/', require('./swagger'));
 
 
 
