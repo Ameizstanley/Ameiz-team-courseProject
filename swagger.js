@@ -5,8 +5,8 @@ const doc = {
         title: 'Ameiz team school management API',
         description: 'API to manage school',
     },
-    host: 'localhost:3000',
-    schemes: ['http'],
+    host: 'ameiz-team-courseproject.onrender.com',
+    schemes: ['https'],
 }
 
 const outputFile = './swagger-output.json'
