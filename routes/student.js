@@ -8,6 +8,7 @@ const { validateCreateStudent, validateUpdateStudent } = require('../middleware/
  */
 
 const studentController = require('../controller/studentController');
+const studentValidation = require('../utilities/studentValidation');
 
 
 
@@ -38,6 +39,8 @@ router.get('/:id',
 
 
 router.post('/', 
+    studentValidation.createStudentRules(),
+    studentValidation.createStudentValidation,
     validateCreateStudent,
     async (req, res) => {
         try{
@@ -53,7 +56,6 @@ router.post('/',
 
 
 router.put('/:id',
-    validateUpdateStudent,
     async (req, res) => {
         try{
             await studentController.updateStudent(req, res)

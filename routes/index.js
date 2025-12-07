@@ -13,6 +13,13 @@ router.use('/teachers', require('./teachers'));
 
 router.use('/', require('./swagger'));
 
+router.use('/study-materials', require('./studyMaterials'));
+
+router.use('/parents', require('./parent'));
+
+router.get('/health', (req, res) => {
+    res.send('Health is very good')
+})
 
 
 module.exports = router;
