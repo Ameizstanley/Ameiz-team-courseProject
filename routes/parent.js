@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const parentController = require('../controller/parentsController');
+const parentValidation = require('../utilities/parentValidation');
+
+
 
 router.get('/',
     async (req, res) => {
@@ -31,6 +34,8 @@ router.get('/:id',
 
 
 router.post('/',
+    parentValidation.createParentRules(),
+    parentValidation.createParentRules,
     async (req, res) => {
         try{
             await parentController.createParent(req, res)
@@ -44,7 +49,10 @@ router.post('/',
 )
 
 
-router.put('/:id', 
+
+router.put('/:id',
+    parentValidation.updateParentRules(),
+    parentValidation.checkUpdateParents, 
     async (req, res) => {
         try{
             await parentController.updateParent(req, res)

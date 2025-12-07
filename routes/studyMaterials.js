@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const studyMaterialsController = require('../controller/studyMaterialsController');
+const studyMaterialValidation = require('../utilities/studyMaterial');
 
 router.get('/',
     async (req, res) => {
@@ -31,6 +32,8 @@ router.get('/:id',
 
 
 router.post('/', 
+     studyMaterialValidation.createStudyMaterialRules(),
+     studyMaterialValidation.checkCreateStudyMaterial,
     async (req, res) => {
         try{
             await studyMaterialsController.createStudyMaterial(req, res)
@@ -45,6 +48,8 @@ router.post('/',
 
 
 router.put('/:id', 
+    studyMaterialValidation.updateStudyMaterialRules(),
+    studyMaterialValidation.checkUpdateStudyMaterial,
     async (req, res) => {
         try{
             await studyMaterialsController.updateStudyMaterial(req, res)
@@ -58,7 +63,7 @@ router.put('/:id',
 )
 
 
-router.delete('/:id', 
+router.delete('/:id',
     async (req, res) => {
         try{
             await studyMaterialsController.deleteStudyMaterial(req, res)

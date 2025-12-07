@@ -7,6 +7,7 @@ const router = express.Router();
  */
 
 const studentController = require('../controller/studentController');
+const studentValidation = require('../utilities/studentValidation');
 
 
 
@@ -37,6 +38,8 @@ router.get('/:id',
 
 
 router.post('/', 
+    studentValidation.createStudentRules(),
+    studentValidation.createStudentValidation,
     async (req, res) => {
         try{
             await studentController.createStudent(req, res)
@@ -51,6 +54,8 @@ router.post('/',
 
 
 router.put('/:id',
+    studentValidation.updateStudentRules(),
+    studentValidation.updateStudentValidation,
     async (req, res) => {
         try{
             await studentController.updateStudent(req, res)

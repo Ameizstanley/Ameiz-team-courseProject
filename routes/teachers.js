@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const teacherController = require('../controller/teacherController');
+const teacherValidation = require('../utilities/teachersValidation')
 
 
 
@@ -32,6 +33,8 @@ router.get('/:id',
 
 
 router.post('/',
+    teacherValidation.createTeacherRules(),
+    teacherValidation.checkCreateTeacher,
     async (req, res) => {
         try{
             await teacherController.createTeacher(req, res)
@@ -46,6 +49,8 @@ router.post('/',
 
 
 router.put('/:id', 
+    teacherValidation.updateTeacherRules(),
+    teacherValidation.checkUpdateTeacher,
     async (req, res) => {
         try{
             await teacherController.updateTeacher(req, res)
