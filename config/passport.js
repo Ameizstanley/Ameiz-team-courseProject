@@ -21,7 +21,7 @@ passport.serializeUser((user, done) => {
 // Deserialize user from the sessions
 // Happens on every request for authenticated users
 passport.deserializeUser((obj, done) => {
-    done(null, {id: id});
+    done(null, obj);
 });
 
 module.exports = passport;
