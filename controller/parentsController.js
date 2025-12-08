@@ -17,7 +17,7 @@ const getAllParents = async (req, res) => {
  }   }
 
 
- const getStudentById = async (req, res) => {
+ const getParentById = async (req, res) => {
     try {
         const parentId = new ObjectId(req.params.id);
         const parent = await mongodb.getDatabase().db('ameiz-team-project').collection('parent').findOne({ _id: parentId });
@@ -121,7 +121,7 @@ const deleteParent = async (req, res) => {
 
 module.exports = {
     getAllParents,
-    getStudentById,
+    getParentById,
     createParent,
     updateParent,
     deleteParent
