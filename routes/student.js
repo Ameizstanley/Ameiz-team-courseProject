@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { ensureAuthenticated } = require('../utilities/authMiddleware');
 
 /**
  * student route
@@ -37,7 +38,7 @@ router.get('/:id',
     } );
 
 
-router.post('/', 
+router.post('/', ensureAuthenticated,
     studentValidation.createStudentRules(),
     studentValidation.createStudentValidation,
     async (req, res) => {
@@ -54,6 +55,7 @@ router.post('/',
 
 
 router.put('/:id',
+    ensureAuthenticated,
     studentValidation.updateStudentRules(),
     studentValidation.updateStudentValidation,
     async (req, res) => {
@@ -70,6 +72,7 @@ router.put('/:id',
 
 
 router.delete('/:id',
+    ensureAuthenticated,
     async (req, res) => {
         try{
             await studentController.deleteStudent(req, res)
