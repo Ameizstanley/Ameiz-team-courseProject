@@ -26,7 +26,7 @@ validate.createParentRules =() => {
 
         body('phone')
         .notEmpty().withMessage('Phone number is required')
-        .isMobilePhone().withMessage('Invalid phone number')
+        .matches(/^[\d\s\-\+\(\)]+$/).withMessage('Phone number can only contain digits, spaces, hyphens, plus signs, and parentheses')
         .trim(),
 
 
@@ -42,12 +42,20 @@ validate.createParentRules =() => {
 
         body('children_names')
         .notEmpty().withMessage('Children names are required')
-        .isArray({min: 1}).withMessage('Children names must be an array with at least one name'),
+        .custom((value) => {
+            if (typeof value === 'string') return true;
+            if (Array.isArray(value) && value.length > 0) return true;
+            throw new Error('Children names must be a string or non-empty array');
+        }),
 
 
         body('children_grades')
         .notEmpty().withMessage('Children grades are required')
-        .isArray({min: 1}).withMessage('Children grades must be an array with at least one grade'),
+        .custom((value) => {
+            if (typeof value === 'string') return true;
+            if (Array.isArray(value) && value.length > 0) return true;
+            throw new Error('Children grades must be a string or non-empty array');
+        }),
     ]
 }
 
@@ -78,7 +86,7 @@ validate.updateParentRules =() => {
 
         body('phone')
         .optional()
-        .isMobilePhone().withMessage('Invalid phone number')
+        .matches(/^[\d\s\-\+\(\)]+$/).withMessage('Phone number can only contain digits, spaces, hyphens, plus signs, and parentheses')
         .trim(),
 
 
@@ -92,11 +100,19 @@ validate.updateParentRules =() => {
 
         body('children_names')
         .optional()
-        .isArray({min: 1}).withMessage('Children names must be an array with at least one name'),
+        .custom((value) => {
+            if (typeof value === 'string') return true;
+            if (Array.isArray(value) && value.length > 0) return true;
+            throw new Error('Children names must be a string or non-empty array');
+        }),
 
         body('children_grades')
         .optional()
-        .isArray({min: 1}).withMessage('Children grades must be an array with at least one grade'),
+        .custom((value) => {
+            if (typeof value === 'string') return true;
+            if (Array.isArray(value) && value.length > 0) return true;
+            throw new Error('Children grades must be a string or non-empty array');
+        }),
     ]
 }
 
