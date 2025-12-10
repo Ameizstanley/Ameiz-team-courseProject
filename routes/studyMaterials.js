@@ -3,6 +3,9 @@ const router = express.Router();
 const studyMaterialsController = require('../controller/studyMaterialsController');
 const studyMaterialValidation = require('../utilities/studyMaterial');
 
+
+const { isAuthenticated } = require('../utilities/authenticate')
+
 router.get('/',
     async (req, res) => {
         try{
@@ -32,6 +35,7 @@ router.get('/:id',
 
 
 router.post('/', 
+    isAuthenticated,
      studyMaterialValidation.createStudyMaterialRules(),
      studyMaterialValidation.checkCreateStudyMaterial,
     async (req, res) => {
@@ -47,7 +51,8 @@ router.post('/',
 )
 
 
-router.put('/:id', 
+router.put('/:id',
+    isAuthenticated, 
     studyMaterialValidation.updateStudyMaterialRules(),
     studyMaterialValidation.checkUpdateStudyMaterial,
     async (req, res) => {
@@ -64,6 +69,7 @@ router.put('/:id',
 
 
 router.delete('/:id',
+    isAuthenticated,
     async (req, res) => {
         try{
             await studyMaterialsController.deleteStudyMaterial(req, res)

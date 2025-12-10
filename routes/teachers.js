@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const teacherController = require('../controller/teacherController');
 const teacherValidation = require('../utilities/teachersValidation');
-const { ensureAuthenticated } = require('../utilities/authMiddleware');
 
 
 
-router.get('/', 
+const { isAuthenticated } = require('../utilities/authenticate')
+
+
+router.get('/',
     async (req, res) => {
         try{
             await teacherController.getAllTeachers(req, res)
@@ -34,6 +36,7 @@ router.get('/:id',
 
 
 router.post('/',
+    isAuthenticated,
     teacherValidation.createTeacherRules(),
     teacherValidation.checkCreateTeacher,
     async (req, res) => {
@@ -50,6 +53,7 @@ router.post('/',
 
 
 router.put('/:id', 
+    isAuthenticated,
     teacherValidation.updateTeacherRules(),
     teacherValidation.checkUpdateTeacher,
     async (req, res) => {
@@ -65,6 +69,7 @@ router.put('/:id',
 );
 
 router.delete('/:id', 
+    isAuthenticated,
     async (req, res) => {
         try{
             await teacherController.deleteTeacher(req, res)

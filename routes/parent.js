@@ -4,6 +4,7 @@ const parentController = require('../controller/parentsController');
 const parentValidation = require('../utilities/parentValidation');
 
 
+const { isAuthenticated } = require('../utilities/authenticate')
 
 router.get('/',
     async (req, res) => {
@@ -34,6 +35,7 @@ router.get('/:id',
 
 
 router.post('/',
+    isAuthenticated,
     parentValidation.createParentRules(),
     parentValidation.checkCreateParents,
     async (req, res) => {
@@ -51,6 +53,7 @@ router.post('/',
 
 
 router.put('/:id',
+    isAuthenticated,
     parentValidation.updateParentRules(),
     parentValidation.checkUpdateParents, 
     async (req, res) => {
@@ -66,6 +69,7 @@ router.put('/:id',
 )
 
 router.delete('/:id',
+    isAuthenticated,
     async (req, res) => {
         try{
             await parentController.deleteParent(req, res)
