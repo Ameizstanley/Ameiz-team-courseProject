@@ -38,10 +38,6 @@ validate.updateStudyMaterialRules = () => {
         .isLength({min: 3}).withMessage('Title must be at least 3 characters long')
         .trim(),
 
-        body('subject ')
-        .notEmpty().withMessage('Subject is required')
-        .isLength({min: 3}).withMessage('Subject must be at least 3 characters long'),
-
         body('gradeLevel')
         .notEmpty().withMessage('Grade level is required')
         .isLength({min: 1}).withMessage('Grade level must be at least 1 character long')
