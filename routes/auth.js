@@ -60,4 +60,5 @@ router.get('/failure', (req, res) => {
         error: 'Authentication failed'
     });
 });
+
 module.exports = router;

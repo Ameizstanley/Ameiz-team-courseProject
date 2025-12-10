@@ -52,15 +52,7 @@ const createStudent = async (req, res) => {
             dateOfBirth: req.body.dateOfBirth,
             gradeLevel: req.body.gradeLevel,
             enrollmentDate: req.body.enrollmentDate,
-            phoneNumber: req.body.phoneNumber,
-            address : {
-                street : req.body.address.street,
-                city : req.body.address.city,
-                state : req.body.address.state,
-                zipCode : req.body.address.zipCode,
-                country : req.body.address.country
-
-            }
+            phoneNumber: req.body.phoneNumber
 
         };
         const result = await mongodb.getDatabase().db('ameiz-team-project').collection('student').insertOne(newCustomer);
@@ -90,15 +82,7 @@ const updateStudent = async (req, res) => {
             dateOfBirth: req.body.dateOfBirth,
             gradeLevel: req.body.gradeLevel,
             enrollmentDate: req.body.enrollmentDate,
-            phoneNumber: req.body.phoneNumber,
-            address : {
-                street : req.body.address.street,
-                city : req.body.address.city,
-                state : req.body.address.state,
-                zipCode : req.body.address.zipCode,
-                country : req.body.address.country
-
-            }
+            phoneNumber: req.body.phoneNumber
             
     }
         const result = await mongodb.getDatabase().db('ameiz-team-project').collection('student').updateOne(
