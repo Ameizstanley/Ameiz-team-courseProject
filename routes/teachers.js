@@ -36,7 +36,7 @@ router.get('/:id',
 
 
 router.post('/',
-    // isAuthenticated,
+    isAuthenticated,
     teacherValidation.createTeacherRules(),
     teacherValidation.checkCreateTeacher,
     async (req, res) => {
@@ -53,7 +53,7 @@ router.post('/',
 
 
 router.put('/:id', 
-    // isAuthenticated,
+    isAuthenticated,
     teacherValidation.updateTeacherRules(),
     teacherValidation.checkUpdateTeacher,
     async (req, res) => {
@@ -69,7 +69,7 @@ router.put('/:id',
 );
 
 router.delete('/:id', 
-    // isAuthenticated,
+    isAuthenticated,
     async (req, res) => {
         try{
             await teacherController.deleteTeacher(req, res)

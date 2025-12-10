@@ -35,7 +35,7 @@ router.get('/:id',
 
 
 router.post('/',
-    // isAuthenticated,
+    isAuthenticated,
     parentValidation.createParentRules(),
     parentValidation.checkCreateParents,
     async (req, res) => {
@@ -53,7 +53,7 @@ router.post('/',
 
 
 router.put('/:id',
-    // isAuthenticated,
+    isAuthenticated,
     parentValidation.updateParentRules(),
     parentValidation.checkUpdateParents, 
     async (req, res) => {
@@ -69,7 +69,7 @@ router.put('/:id',
 )
 
 router.delete('/:id',
-    // isAuthenticated,
+    isAuthenticated,
     async (req, res) => {
         try{
             await parentController.deleteParent(req, res)
