@@ -69,6 +69,7 @@ validate.checkCreateTeacher = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
+    next();
 }
 
 
@@ -77,6 +78,7 @@ validate.checkUpdateTeacher = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
+    next();
 }
 
 
