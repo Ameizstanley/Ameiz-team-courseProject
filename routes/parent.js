@@ -35,7 +35,7 @@ router.get('/:id',
 
 router.post('/',
     parentValidation.createParentRules(),
-    parentValidation.createParentRules,
+    parentValidation.checkCreateParents,
     async (req, res) => {
         try{
             await parentController.createParent(req, res)
