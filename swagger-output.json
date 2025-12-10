@@ -8,7 +8,7 @@
   "host": "ameiz-team-courseproject.onrender.com",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
